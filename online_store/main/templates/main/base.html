@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,24 +7,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="deps/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="deps/css/my_css.css">
+    <link rel="stylesheet" href="{% static 'deps/css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/my_css.css' %}">
     <!-- Стиль footer-a для главной страницы -->
-    <link rel="stylesheet" href="deps/css/my_footer_css.css">
+   {% block css %}
+   {% endblock css %}
     <!-- Favicons for different platforms -->
-    <link rel="apple-touch-icon" sizes="180x180" href="deps/favicon/women.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="deps/favicon/women.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="deps/favicon/women.png">
-    <link rel="manifest" href="deps/favicon/site.webmanifest">
-    <link rel='stylesheet', href='deps/css/styles.css'>
-    <title>Glow</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'deps/favicon/women.png' %}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'deps/favicon/women.png' %}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'deps/favicon/women.png' %}}">
+    <link rel="manifest" href="{% static 'deps/favicon/site.webmanifest' %}">
+    <title>{{ title }}</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Glow</a>
+                <a class="navbar-brand" href="{% url "index" %}">Glow</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -33,11 +35,12 @@
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                               Информация
+                                Информация
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item  text-white" href="#">Доставка и оплата</a></li>
                                 <li><a class="dropdown-item  text-white" href="#">Контактная информация</a></li>
+                                <li><a class="dropdown-item  text-white" href="{% url "about" %}">Про нас</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -80,8 +83,8 @@
                     <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Каталог
-                        <img class="mx-1" src="deps/icons/catalogue.png" alt="Catalog Icon" width="24"
-                            height="24">
+                        <img class="mx-1" src="{% static 'deps/icons/grid-fill.svg' %}" alt="Catalog Icon" width="16"
+                            height="16">
                     </button>
                     <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
                         <li><a class="dropdown-item text-white" href="goods/catalog.html">Все товары</a></li>
@@ -97,7 +100,7 @@
                 <div>
                     <button type="button" class="btn btn-dark btn-secondary d-flex" id="modalButton"
                         aria-expanded="false">
-                        <img class="mx-1" src="deps/icons/cart.png" alt="Catalog Icon" width="24"
+                        <img class="mx-1" src="{% static 'deps/icons/basket2-fill.svg' %}" alt="Catalog Icon" width="24"
                             height="24">
                         <span id="goods-in-cart-count">0</span>
                     </button>
@@ -142,7 +145,7 @@
                                                     <div class="col p-0"><strong>100.00 $</strong></div>
                                                     <div class="col p-0">
                                                         <a href="#" class="remove-from-cart" data-cart-id="">
-                                                            <img class="mx-1" src="deps/icons/trash3-fill.svg"
+                                                            <img class="mx-1" src="{% static "deps/icons/trash3-fill.svg" %}}"
                                                                 alt="Catalog Icon" width="16" height="16">
                                                         </a>
                                                     </div>
@@ -172,47 +175,21 @@
         <div class="container">
             <div class="row mt-1">
                 <div class="col-lg-2">
+                    <!-- Пустой блок на Ваше усмотрение -->
                 </div>
-            <div>
                 <div class="col-lg-10">
                     <!-- Контент на странице -->
-                    <h1 class="mt-5 pt-5"><strong>Glow Gem</strong></h1>
-                </div>
-            </div>
-            <div>
-                <div class="loader loader--1" ligh="center">
-                    <div class="dot">
-                
-                    </div>
-                    <div class="shadow"></div>
-                </div>
-                <div class="loader loader--2" ligh="center">
-                    <div class="dot">
-                        <div class="face">
-                            <div class="eyes"></div>
-                            <div class="mouth"></div>
-                        </div>
-                    </div>
-                    <div class="shadow"></div>
-                </div>
-                <div class="loader loader--3" ligh="center">
-                    <div class="dot">
-                
-                    </div>
-                    <div class="shadow"></div>
+                    {% block content %}
+                    {% endblock content %}
                 </div>
             </div>
         </div>
     </section>
-    <footer class="py-4 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">&copy; Created with love by anchik</p>
-        </div>
-    </footer>
-    <script src="deps/js/jquery/jquery-3.7.0.min.js"></script>
-    <script src="deps/js/jquery-events.js"></script>
-    <script src="deps/js/jquery-ajax.js"></script>
-    <script src="deps/js/bootstrap/bootstrap.bundle.min.js"></script>
+   {% block footer %}
+   {% endblock footer %}
+    <script src="{% static 'deps/js/jquery/jquery-3.7.0.min.js' %}"></script>
+    <script src="{% static 'deps/js/jquery-events.js' %}"></script>
+    <script src="{% static 'deps/js/jquery-ajax.js' %}"></script>
+    <script src="{% static 'deps/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 </body>
-
 </html>
