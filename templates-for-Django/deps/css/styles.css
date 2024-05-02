@@ -3,6 +3,12 @@
     --animation-time-double: 2s;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 html {
     font-size: 62.5%;
 }
